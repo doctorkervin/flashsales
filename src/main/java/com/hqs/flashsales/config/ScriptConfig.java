@@ -37,6 +37,13 @@ public class ScriptConfig {
 
     }
 
+    /**
+     * @title lockScript
+     * @description 分布式锁
+     * @author kervin
+     * @updateTime 2019/12/27 0027 15:43 No such property: code for class: Script1
+     * @throws
+     */
     @Bean
     public RedisScript<Boolean> lockScript() {
         RedisScript<Boolean> redisScript = null;
@@ -49,6 +56,13 @@ public class ScriptConfig {
         return redisScript;
     }
 
+    /**
+     * @title unlockScript
+     * @description 分布式解锁
+     * @author kervin
+     * @updateTime 2019/12/27 0027 15:43 No such property: code for class: Script1
+     * @throws
+     */
     @Bean
     public RedisScript<Long> unlockScript() {
         RedisScript<Long> redisScript = null;
@@ -61,6 +75,13 @@ public class ScriptConfig {
         return redisScript;
     }
 
+    /**
+     * @title rateLimitScript
+     * @description 加载令牌桶限流
+     * @author kervin
+     * @updateTime 2019/12/27 0027 15:42 No such property: code for class: Script1
+     * @throws
+     */
     @Bean
     public RedisScript<Long> rateLimitScript() {
         RedisScript<Long> redisScript = null;

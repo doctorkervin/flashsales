@@ -9,9 +9,16 @@ import org.springframework.stereotype.Component;
 
 import java.util.Collections;
 
+/**
+ * @title 分布式锁组件
+ * @description 分布式锁组件
+ * @author kervin
+ * @updateTime 2019/12/27 0027 16:16 No such property: code for class: Script1
+ */
 @Slf4j
 @Component
 public class DistributedLock {
+
 
     //注意RedisTemplate用的String,String，后续所有用到的key和value都是String的
     @Autowired
@@ -23,6 +30,13 @@ public class DistributedLock {
     @Autowired
     RedisScript<Long> unlockScript;
 
+    /**
+     * @title distributedLock
+     * @description 分布式加锁
+     * @author kervin
+     * @updateTime 2019/12/27 0027 15:53 No such property: code for class: Script1
+     * @throws
+     */
     public Boolean distributedLock(String key, String uuid, String secondsToLock) {
         Boolean locked = false;
         try {
@@ -36,6 +50,13 @@ public class DistributedLock {
         return locked;
     }
 
+    /**
+     * @title distributedUnlock
+     * @description 分布式解锁
+     * @author kervin
+     * @updateTime 2019/12/27 0027 15:53 No such property: code for class: Script1
+     * @throws
+     */
     public void distributedUnlock(String key, String uuid) {
         Long unlocked = redisTemplate.execute(unlockScript, Collections.singletonList(key),
                 uuid);

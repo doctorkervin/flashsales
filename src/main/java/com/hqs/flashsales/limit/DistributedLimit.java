@@ -13,6 +13,7 @@ import java.util.Collections;
 /**
  * @author huangqingshi
  * @Date 2019-01-17
+ * @Desc 限流组件
  */
 @Slf4j
 @Component
@@ -28,6 +29,13 @@ public class DistributedLimit {
     @Resource
     RedisScript<Long> limitScript;
 
+    /**
+     * @title distributedLimit
+     * @description 计数器限流
+     * @author kervin
+     * @updateTime 2019/12/27 0027 16:15 No such property: code for class: Script1
+     * @throws
+     */
     public Boolean distributedLimit(String key, String limit, String seconds) {
         Long id = 0L;
 
@@ -46,6 +54,13 @@ public class DistributedLimit {
         }
     }
 
+    /**
+     * @title distributedRateLimit
+     * @description 令牌桶限流
+     * @author kervin
+     * @updateTime 2019/12/27 0027 16:14 No such property: code for class: Script1
+     * @throws
+     */
     public Boolean distributedRateLimit(String key, String limit, String seconds) {
         Long id = 0L;
         long intervalInMills = Long.valueOf(seconds) * 1000;
