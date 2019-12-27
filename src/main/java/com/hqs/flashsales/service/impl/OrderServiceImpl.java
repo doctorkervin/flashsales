@@ -50,6 +50,13 @@ public class OrderServiceImpl implements OrderService {
         handleCatalog();
     }
 
+    /**
+     * @title handleCatalog
+     * @description 另起一个线程循环处理队列中的要处理的数据
+     * @author kervin
+     * @updateTime 2019/12/27 0027 17:42 No such property: code for class: Script1
+     * @throws
+     */
     private void handleCatalog() {
         new Thread(() -> {
             try {
@@ -95,6 +102,13 @@ public class OrderServiceImpl implements OrderService {
         return salesOrder.getId();
     }
 
+    /**
+     * @title placeOrderWithQueue
+     * @description
+     * @author kervin
+     * @updateTime 2019/12/27 0027 17:37 No such property: code for class: Script1
+     * @throws
+     */
     @Override
     public Long placeOrderWithQueue(Long catalogId) {
         String totalCache = redisTemplate.opsForValue().get(CATALOG_TOTAL + catalogId);
@@ -110,6 +124,7 @@ public class OrderServiceImpl implements OrderService {
             throw new RuntimeException("ALL SOLD OUT: " + catalogId);
         }
         try {
+            //将需要处理的数据存在队列中
             catalogs.put(catalogId);
         } catch (Exception e) {
             log.error("error", e);
